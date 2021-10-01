@@ -1,6 +1,6 @@
 <template>
    <div class="overview-wrapper">
-     <div v-for="item in display" v-bind:key="item">
+     <div v-for="item in display" :key="item">
         <div :class="{ [item.color]: true, 'ov-item': true }">
         <div class="ov-title">{{ item.title }}</div>
         <div class="number-title">{{item.total}}</div>
@@ -20,7 +20,7 @@ export default {
 
   data () {
     return {
-      display:[null, null, null, null],
+      display:[],
       totaldecideCnt:[],
       totaldeathCnt:[],
       totalclearCnt:[],
@@ -33,7 +33,6 @@ export default {
       const startCreateDt = moment().subtract(1,'d').format('YYYYMMDD')
       const endCreateDt = moment().format('YYYYMMDD')
       const { data } = await axios.get('/openapi/service/rest/Covid19/getCovid19InfStateJson?serviceKey=SGsOrRFvsbOZ6Oa2wrwdLE9yTZeH%2FFNwx9nlqc2jYcC6d1cN7%2FLg4gpfcipuXnxVCVDSdrxgjw8kNv7pvEfNaw%3D%3D&pageNo=1&numOfRows=10&startCreateDt='+ startCreateDt +'&endCreateDt='+endCreateDt);
-      console.log(data);
 
       data.response.body.items.item.forEach(d => {
         this.totaldecideCnt.push(d.decideCnt)
@@ -66,10 +65,6 @@ export default {
       total: this.totalexamCnt[0],
       today: this.totalexamCnt[0]-this.totalexamCnt[1],
     }
-    // this.totaldecideCnt.pop()
-    // this.totaldeathCnt.pop()
-    // this.totalclearCnt.pop()
-    // this.totalexamCnt.pop()
     this.display= [cases, deaths, clear, exam]
    
   }
@@ -104,16 +99,6 @@ div{
 
 }
 
-.overview {
-  display: flex;
-  justify-content: space-between;
-  width: 48%;
-  margin-bottom: 30px;
-  /* font-weight: bold; */
-  font-size: 14px;
-  overflow: hidden;
-  height: 160px;
-}
 
 .ov-title {
   font-size: 1em;
@@ -137,42 +122,9 @@ div{
   padding-bottom: 0px;
 }
 
-.total {
-  font-size: 1.3em;
-  padding-bottom: 0;
-}
-
-.bg-chart {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.bg-chart::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: linear-gradient(
-    90deg,
-    white,
-    white,
-    rgba(255, 255, 255, 0)
-  );
-}
 
 .red {
   color: red;
-}
-.black {
-  color: var(--black);
-}
-.blue {
-  color: var(--blue);
 }
 .orange {
   color: orange;

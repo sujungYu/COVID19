@@ -3,20 +3,19 @@
    <h1>코로나바이러스-19</h1>
    <h2>{{$moment().format(' YYYY. MM. DD.')}}</h2>
   <div >
-    <Home/>
+    <router-view></router-view>
   </div>
   
   </div>
 </template>
 
 <script>
-import Home from './views/Home.vue'
+
+
 export default {
   name: 'App',
   components: {
-    Home
   },
-   
 }
 </script>
 
