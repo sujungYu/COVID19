@@ -18,7 +18,6 @@ export default {
         var daydecideCnt= []
         const dates = this.chartData.map(d=>d.stateDt).reverse();
         const totals = this.chartData.map(d=>d.total);
-        console.log(dates);
         dates.shift()
         
 

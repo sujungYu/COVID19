@@ -1,6 +1,6 @@
 <template>
-    <div class="graphstyle" v-if="arrdecideCnt.length>0">
-        <line-chart :height="40" :chartData="arrdecideCnt" :options="chartOptions" ></line-chart>
+    <div class="can" v-if="arrdecideCnt.length>0">
+        <line-chart class="canvas" :width=650 :height=200 :chartData="arrdecideCnt" :options="chartOptions" ></line-chart>
     </div>
 </template>
 
@@ -21,6 +21,8 @@ export default {
     return {
       arrdecideCnt:[],
       chartOptions:{
+         responsive: false,
+        maintainAspectRatio: false,
         
         legend:{
           display: false,
@@ -36,8 +38,6 @@ export default {
           duration:1,
         },
 
-        options:{
-          responsive: false,
 
           scales:{
            yAxes:[{
@@ -68,8 +68,7 @@ export default {
         }
         
       }
-    };
-  },
+    },
   
   async created(){
     
@@ -97,16 +96,26 @@ export default {
 </script>
 
 <style>
-
-
-.graphstyle{
-    border-radius:10px;
-    background-color: white;
-    
-    margin-top: 5%;
-    margin-right: 10%;
-    margin-left: 0%;
-    
+div{
+   text-align: center;
+   margin: auto 0;
+}
+.can{
+  position: relative;
+  
+}
+.canvas{
+  margin:0 auto;
+  margin-top: 2%;
+  background-color: white;
+  position: relative;
+  border-radius:10px;
+  width: 700px;
+  height:220px;
+  border:  2px solid rgba(31, 19, 19, 0.089);
+  padding-top: 1%;
+  padding-left: 2%;
+  margin-bottom: 2%;
 }
 
 </style>

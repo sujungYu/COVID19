@@ -1,12 +1,8 @@
 <template>
   <div>
     <Total/>
-    <div>
-      <Map/>
-    </div>
-    <div>
-      <Graph/>
-    </div>
+    <Map/>
+    <Graph/>
   </div>
 </template>
 
@@ -26,9 +22,10 @@ export default {
 </script>
 
 <style scoped>
-body{
+div{
   margin: 0 auto;
   text-align: center;
 }
+
     
 </style>

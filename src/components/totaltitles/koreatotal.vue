@@ -1,10 +1,10 @@
 <template>
    <div class="overview-wrapper">
-     <div v-for="item in display" :key="item">
+     <div v-for="item in display" v-bind:key="item">
         <div :class="{ [item.color]: true, 'ov-item': true }">
         <div class="ov-title">{{ item.title }}</div>
         <div class="number-title">{{item.total}}</div>
-        <div class="number">+{{item.today}}</div>
+        <div class="number">▲{{item.today}}</div>
         </div>
         </div>
      </div>
@@ -43,24 +43,28 @@ export default {
 
     const cases= {
       color: "red",
+      background:"red",
       title:"확진자",
       total:this.totaldecideCnt[0],
       today:this.totaldecideCnt[0]-this.totaldecideCnt[1],
     }
     const deaths={
       color: "purple",
+      background:"red",
       title:"사망자",
       total: this.totaldeathCnt[0],
       today: this.totaldeathCnt[0]-this.totaldeathCnt[1],
     }
     const clear={
       color: "green",
+      background:"red",
       title:"격리해제",
       total: this.totalclearCnt[0],
       today: this.totalclearCnt[0]-this.totalclearCnt[1],
     }
     const exam={
       color: "orange",
+      background:"red",
       title:"검사 중",
       total: this.totalexamCnt[0],
       today: this.totalexamCnt[0]-this.totalexamCnt[1],
@@ -75,11 +79,10 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nunito:wght@600;800;900&family=Ubuntu:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gruppo&display=swap');
 
 div{
   margin: 0 auto;
-  font-family:"Black Han Sans";
 }
 
 .overview-wrapper {
@@ -88,14 +91,14 @@ div{
   flex-wrap: wrap;
   justify-content: space-between;
   background: white;
-  width: 618px;
+  width: 700px;
   height: 140px;
   border-radius: 10px;
   text-align: center;
   margin-top: 2%;
   margin-bottom: 2%;
-  padding-top: 14px;
-  border: 2px solid rgba(31, 19, 19, 0.151)
+  padding-top: 24px;
+  border: 2px solid rgba(31, 19, 19, 0.089);
 
 }
 
@@ -103,7 +106,8 @@ div{
 .ov-title {
   font-size: 1em;
   opacity: .6;
-  font-size: 18px;
+  font-size: 17px;
+  font-family:'Gruppo';
 }
 
 .ov-item {
@@ -112,13 +116,13 @@ div{
 }
 
 .number-title {
-  opacity: 0.6;
   line-height: 1.2em;
-  font-size: 26px;
+  font-size: 28px;
 }
 
 .number {
-  font-size: 2em;
+  opacity: 0.6;
+  font-size: 17px;
   padding-bottom: 0px;
 }
 

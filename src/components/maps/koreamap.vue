@@ -1,6 +1,6 @@
 <template>
 <div class="p1"> 
-  <div class="d3 ">
+  <div class="d3">
     <koreaCnt></koreaCnt>
     <koreaBtn></koreaBtn>
     </div>
@@ -74,24 +74,20 @@ body{
 }
 .d3{
   background:white; 
-  width: 618px; 
-  height: 750px;
+  width: 700px!important;
+  height: 800px;
   border-radius:10px;
   margin: 0 auto; 
-  border: 2px solid rgba(31, 19, 19, 0.151);
-  padding-left: 40px;
+  border: 2px solid rgba(31, 19, 19, 0.089)!important;
+  padding-left: 50px!important;
   position: relative;
-
-  
 
 }
   path {
     fill:rgb(209, 60, 60);
     stroke:white;
   }
-  .koreatotal{
-    font-family:"Black Han Sans";
-  }
+  
  
  
 </style>

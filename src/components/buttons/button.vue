@@ -31,6 +31,16 @@ import moment from 'moment'
 
 
 export default {
+
+    data () {
+    return {
+      display:[],
+      totaldecideCnt:[],
+      totalname:[],
+    
+    };
+  },
+  
     methods:{
         jeju(){
             this.$router.push('Jeju')
@@ -84,17 +94,8 @@ export default {
             this.$router.push('Seoul')
         }
     },
+  
 
-     data () {
-    return {
-      display:[],
-      totaldecideCnt:[],
-      totalname:[],
-    
-    };
-  },
-  
-  
   async created(){
     
       const startCreateDt = moment().format('YYYYMMDD')
@@ -187,20 +188,20 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nunito:wght@600;800;900&family=Ubuntu:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
 
 div{
   margin: 0 auto;
   
 }
 .button{
-    font-family:"Black Han Sans";
+    font-family: 'Do Hyeon', sans-serif;
     display: flex;
     background: white;
     justify-content: center;
     border:1px solid rgb(216, 215, 215);
-    border-radius: 6px;
-    box-shadow:2px 2px rgb(170, 170, 170);
+    border-radius: 5px;
+    box-shadow:1px 1px rgb(170, 170, 170);
     position: absolute;
     
 }

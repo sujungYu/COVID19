@@ -37,17 +37,17 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nunito:wght@600;800;900&family=Ubuntu:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400&display=swap');
 
 div{
   margin: 0 auto;
-  font-family:"Black Han Sans";
+  font-family: 'Gothic A1', sans-serif;
 }
-
 .cnt{
     font-size: 25px;
     padding-top: 30px;
     padding-bottom: 30px;
+    text-align: left;
 }
 .koreacnt{
     color:royalblue
