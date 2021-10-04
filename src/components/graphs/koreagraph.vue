@@ -1,6 +1,8 @@
 <template>
     <div class="can" v-if="arrdecideCnt.length>0">
-        <line-chart class="canvas" :width=650 :height=200 :chartData="arrdecideCnt" :options="chartOptions" ></line-chart>
+        <line-chart class="canvas" :width=650 :height=200 :chartData="arrdecideCnt" :options="chartOptions" >
+        </line-chart>
+
     </div>
 </template>
 
@@ -21,15 +23,18 @@ export default {
     return {
       arrdecideCnt:[],
       chartOptions:{
-         responsive: false,
+        responsive: false,
         maintainAspectRatio: false,
-        
+
         legend:{
           display: false,
         },
 
         tooltips:{ 
           enabled: true,
+          titleFontSize: 10,
+          bodyFontSize: 15,
+          
         },
         hover:{
           animationDuration: 0

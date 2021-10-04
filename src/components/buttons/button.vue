@@ -1,23 +1,23 @@
 <template>
 <div>
         <div>
-            <button @click="jeju" class= "Jeju button">{{display[0].name}}<span class="red">{{display[0].today}}</span></button>
-            <button @click="gyeongnam" class= "Gyeongnam button">{{display[1].name}}<span class="red">{{display[1].today}}</span></button>
-            <button @click="gyeongbuk" class= "Gyeongbuk button">{{display[2].name}}<span class="red">{{display[2].today}}</span></button>
-            <button @click="jeoanam" class= "Jeoanam button">{{display[3].name}}<span class="red">{{display[3].today}}</span></button>
-            <button @click="jeoanbuk" class= "Jeoanbuk button">{{display[4].name}}<span class="red">{{display[4].today}}</span></button>
-            <button @click="chungnam" class= "Chungnam button">{{display[5].name}}<span class="red">{{display[5].today}}</span></button>
-            <button @click="chungbuk" class= "Chungbuk button">{{display[6].name}}<span class="red">{{display[6].today}}</span></button>
-            <button @click="gangwon" class= "Gangwon button">{{display[7].name}}<span class="red">{{display[7].today}}</span></button>
-            <button @click="gyeonggi" class= "Gyeonggi button">{{display[8].name}}<span class="red">{{display[8].today}}</span></button>
-            <button @click="sejong" class= "Sejong button">{{display[9].name}}<span class="red">{{display[9].today}}</span></button>
-            <button @click="ulsan" class= "Ulsan button">{{display[10].name}}<span class="red">{{display[10].today}}</span></button>
-            <button @click="daejeon" class= "Daejeon button">{{display[11].name}}<span class="red">{{display[11].today}}</span></button>
-            <button @click="gwangju" class= "Gwangju button">{{display[12].name}}<span class="red">{{display[12].today}}</span></button>
-            <button @click="incheon" class= "Incheon button">{{display[13].name}}<span class="red">{{display[13].today}}</span></button>
-            <button @click="daegu" class= "Daegu button">{{display[14].name}}<span class="red">{{display[14].today}}</span></button>
-            <button @click="busan" class= "Busan button">{{display[15].name}}<span class="red">{{display[15].today}}</span></button>
-            <button @click="seoul" class= "Seoul button">{{display[16].name}}<span class="red">{{display[16].today}}</span></button>
+            <button @click="jeju" class= "Jeju button">{{display[0].name}}<span class="red"><br>{{display[0].today}}</span></button>
+            <button @click="gyeongnam" class= "Gyeongnam button">{{display[1].name}}<span class="red"><br>{{display[1].today}}</span></button>
+            <button @click="gyeongbuk" class= "Gyeongbuk button">{{display[2].name}}<span class="red"><br>{{display[2].today}}</span></button>
+            <button @click="jeoanam" class= "Jeoanam button">{{display[3].name}}<span class="red"><br>{{display[3].today}}</span></button>
+            <button @click="jeoanbuk" class= "Jeoanbuk button">{{display[4].name}}<span class="red"><br>{{display[4].today}}</span></button>
+            <button @click="chungnam" class= "Chungnam button">{{display[5].name}}<span class="red"><br>{{display[5].today}}</span></button>
+            <button @click="chungbuk" class= "Chungbuk button">{{display[6].name}}<span class="red"><br>{{display[6].today}}</span></button>
+            <button @click="gangwon" class= "Gangwon button">{{display[7].name}}<span class="red"><br>{{display[7].today}}</span></button>
+            <button @click="gyeonggi" class= "Gyeonggi button">{{display[8].name}}<span class="red"><br>{{display[8].today}}</span></button>
+            <button @click="sejong" class= "Sejong button">{{display[9].name}}<span class="red"><br>{{display[9].today}}</span></button>
+            <button @click="ulsan" class= "Ulsan button">{{display[10].name}}<span class="red"><br>{{display[10].today}}</span></button>
+            <button @click="daejeon" class= "Daejeon button">{{display[11].name}}<span class="red"><br>{{display[11].today}}</span></button>
+            <button @click="gwangju" class= "Gwangju button">{{display[12].name}}<span class="red"><br>{{display[12].today}}</span></button>
+            <button @click="incheon" class= "Incheon button">{{display[13].name}}<span class="red"><br>{{display[13].today}}</span></button>
+            <button @click="daegu" class= "Daegu button">{{display[14].name}}<span class="red"><br>{{display[14].today}}</span></button>
+            <button @click="busan" class= "Busan button">{{display[15].name}}<span class="red"><br>{{display[15].today}}</span></button>
+            <button @click="seoul" class= "Seoul button">{{display[16].name}}<span class="red"><br>{{display[16].today}}</span></button>
             
         
 
@@ -42,6 +42,7 @@ export default {
   },
   
     methods:{
+        
         jeju(){
             this.$router.push('Jeju')
         },
@@ -188,77 +189,86 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@200&display=swap');
 
 div{
-  margin: 0 auto;
+  text-align: left;
   
 }
 .button{
-    font-family: 'Do Hyeon', sans-serif;
-    display: flex;
+    font-family: 'Gothic A1', sans-serif;
+    font-size: 15px;
+    /* display: block; */
     background: white;
     justify-content: center;
-    border:1px solid rgb(216, 215, 215);
+    border:1px solid rgba(216, 215, 215, 0.596);
     border-radius: 5px;
-    box-shadow:1px 1px rgb(170, 170, 170);
+    box-shadow:1px 1px rgba(170, 170, 170, 0.541);
     position: absolute;
+    width: 45px;
+    
     
 }
+/* span{
+    display: block;
+    white-space: normal;
+} */
+
 .red{
+    font-weight: bolder;
     color: red;
 }
 .Jeju{
-    top: 600px;
-    left:200px;
+    top: 580px;
+    left:230px;
 }
 .Gyeongnam{
     top: 430px;
-    left:320px;
+    left:350px;
 }
 .Gyeongbuk{
     top: 270px;
-    left:390px;
+    left:420px;
 }
 .Jeoanam{
     top:480px;
-    left:160px;
+    left:190px;
 }
 .Jeoanbuk{
-    top:380px;
-    left:180px;
+    top:370px;
+    left:220px;
 }
 .Chungnam{
-    top:280px;
-    left:170px;
+    top:270px;
+    left:190px;
 }
 .Chungbuk {
     top:260px;
-    left:300px;
+    left:340px;
 }
 .Gangwon{
     top:170px;
-    left:330px;
+    left:380px;
 }
 .Gyeonggi{
-    top:130px;
-    left:200px;
+    top:110px;
+    left:280px;
 }
 .Sejong{
-    top:290px;
-    left:240px;
+    top:265px;
+    left:270px;
 }
 .Ulsan{
-    top:350px;
-    left:400px;
+    top:370px;
+    left:460px;
 }
 .Daejeon{
-    top:340px;
-    left:250px;
+    top:335px;
+    left:290px;
 }
 .Gwangju{
-    top:440px;
-    left:230px;
+    top:420px;
+    left:270px;
 }
 .Incheon{
     top:180px;
@@ -266,20 +276,15 @@ div{
 }
 .Daegu{
     top:340px;
-    left:325px;
+    left:370px;
 }
 .Busan{
     top:445px;
-    left:400px;
+    left:445px;
 }
 .Seoul{
-    top:200px;
-    left:250px;
+    top:190px;
+    left:285px;
 }
-
-
-
-
-
 
 </style>
