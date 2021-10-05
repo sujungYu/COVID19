@@ -1,6 +1,11 @@
 <template>
- <div class="cnt"><span class="koreacnt">전국</span> 누적 확진자 수 {{totaldecideCnt[0]}} 명</div>
+<transition name="slide-up" appear>
+  <div>
+<div class="cnt"><span class="koreacnt">전국</span>누적 확진자 수 {{totaldecideCnt[0]}} 명</div>
+</div>
+</transition>
 </template>
+
 
 <script>
 import axios from 'axios'
@@ -42,6 +47,17 @@ export default {
 div{
   margin: 0 auto;
   font-family: 'Gothic A1', sans-serif;
+}
+/* .slide-up {
+   transition: all 1s; 
+} */
+
+.slide-up-enter, .slide-up-leave-to{
+  transform: translateY(10px);
+  opacity: 0;
+}
+.slide-up-enter-active, .slide-up-leave-active{
+  transition: all 3.5s ease;
 }
 .cnt{
     font-size: 25px;

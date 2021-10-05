@@ -22,10 +22,10 @@ export default {
 </script>
 
 <style scoped>
-div{
+/* div{
   margin: 0 auto;
   text-align: center;
-}
+} */
 
     
 </style>

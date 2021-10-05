@@ -206,8 +206,15 @@ div{
     box-shadow:1px 1px rgba(170, 170, 170, 0.541);
     position: absolute;
     width: 45px;
-    
-    
+    transition: background 0.25s ease-in;
+}
+.button:hover {
+  background: rgba(59, 56, 56, 0.89);
+  color:white;
+  /* applied to the hover state, so this transition will be applied when a hover is triggered */
+  transition: background 0.35s ease-out;
+  border:none;
+  box-shadow: none;
 }
 /* span{
     display: block;
@@ -271,8 +278,8 @@ div{
     left:270px;
 }
 .Incheon{
-    top:180px;
-    left:140px;
+    top:145px;
+    left:200px;
 }
 .Daegu{
     top:340px;

@@ -22,6 +22,10 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300&display=swap');
 
 
+div{
+   text-align: center;
+   margin: auto 0;
+}
 h1{
   font-family:'Poppins';
   font-size: 75px;

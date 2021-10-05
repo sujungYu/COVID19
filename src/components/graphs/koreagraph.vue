@@ -25,6 +25,14 @@ export default {
       chartOptions:{
         responsive: false,
         maintainAspectRatio: false,
+        title:{
+          text: "최근 7일 확진자 추이",
+          display:true,
+          align:'start',
+          fontSize: 30,
+          fontColor:'black',
+          // fontFamily: "NanumGothic"
+        },
 
         legend:{
           display: false,
@@ -102,21 +110,23 @@ export default {
 
 <style>
 div{
-   text-align: center;
+   /* text-align: lf; */
    margin: auto 0;
 }
 .can{
-  position: relative;
+  text-align: left;
+  /* position: relative; */
   
 }
 .canvas{
   margin:0 auto;
   margin-top: 2%;
   background-color: white;
-  position: relative;
+  text-align: left;
+  /* position: relative; */
   border-radius:10px;
   width: 700px;
-  height:220px;
+  height:250px;
   border:  2px solid rgba(31, 19, 19, 0.089);
   padding-top: 1%;
   padding-left: 2%;

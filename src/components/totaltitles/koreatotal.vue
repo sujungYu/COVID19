@@ -1,13 +1,15 @@
 <template>
-   <div class="overview-wrapper">
-     <div v-for="item in display" v-bind:key="item">
-        <div :class="{ [item.color]: true, 'ov-item': true }">
+<div >
+  <transition-group class="overview-wrapper" name="slide-up" appear>
+    <div v-for="item in display" v-bind:key="item" >
+    <div :class="{ [item.color]: true, 'ov-item': true }">
         <div class="ov-title">{{ item.title }}</div>
         <div class="number-title">{{item.total}}</div>
-        <div class="number">▲{{item.today}}</div>
+        <div class="number">▲{{item.today}}</div>  
         </div>
         </div>
-     </div>
+         </transition-group>
+         </div>
 </template>
 
 <script>
@@ -84,11 +86,24 @@ export default {
 div{
   margin: 0 auto;
 }
+/* .list-item {
+  display: inline-block;
+ 
+} */
+.slide-up-enter, .slide-up-leave-to{
+  transform: translateY(10px);
+  opacity: 0;
+  
+}
+.slide-up-enter-active, .slide-up-leave-active{
+  transition: all 3.5s ease;
+}
 
 .overview-wrapper {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  margin: 0 auto;
   justify-content: space-between;
   background: white;
   width: 700px;
@@ -121,7 +136,6 @@ div{
 }
 
 .number {
-  opacity: 0.6;
   font-size: 17px;
   padding-bottom: 0px;
 }
