@@ -1,22 +1,26 @@
 <template>
     <div class="can" v-if="arrdecideCnt.length>0">
-        <line-chart class="canvas" :width=650 :height=200 :chartData="arrdecideCnt" :options="chartOptions" >
-        </line-chart>
-
+      
+        <bar-chart class="canvas" :width=650 :height=210 :chartData="arrdecideCnt" :options="chartOptions" >
+          <!-- <Btn/> -->
+        </bar-chart>
     </div>
 </template>
 
 <script>
-import {Line} from 'vue-chartjs'
+import {Bar} from 'vue-chartjs'
 import axios from 'axios'
 import moment from 'moment'
+import Chart from 'chart.js'
 
-import LineChart from './LineChart.vue'
+import BarChart from './BarChart.vue'
+// import Btn from '../buttons/graphbutton.vue'
 
 export default {
-  extends: Line,
+  extends: Bar,
   components:{
-    LineChart
+    BarChart,
+    // Btn
   },
 
   data () {
@@ -25,30 +29,44 @@ export default {
       chartOptions:{
         responsive: false,
         maintainAspectRatio: false,
-        title:{
-          text: "최근 7일 확진자 추이",
-          display:true,
-          align:'start',
-          fontSize: 30,
-          fontColor:'black',
-          // fontFamily: "NanumGothic"
-        },
 
         legend:{
           display: false,
         },
 
         tooltips:{ 
-          enabled: true,
-          titleFontSize: 10,
-          bodyFontSize: 15,
-          
+          enabled: false,
+          // displayColors:false,
+          // backgroundColor: '#0a6dff',
+          // titleFontColor:'white',
+          // titleFontSize: 10,
+          // bodyFontColor:'white',
+          // bodyFontSize: 15,
+
         },
+
         hover:{
           animationDuration: 0
         },
         animation:{
           duration:1,
+          onComplete: function () {
+  					var chartInstance = this.chart,
+  					ctx = chartInstance.ctx;
+  					ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+  					ctx.fillStyle = 'rgba(43, 22, 22, 0.8)';
+  					ctx.textAlign = 'center';
+  					ctx.textBaseline = 'center';
+
+  					this.data.datasets.forEach(function (dataset, i) {
+  						var meta = chartInstance.controller.getDatasetMeta(i);
+  						meta.data.forEach(function (bar, index) {
+  							var data = dataset.data[index];
+  							ctx.fillText(data, bar._model.x, bar._model.y - 3);
+  						});
+  					});
+  				}
+          
         },
 
 
@@ -62,6 +80,7 @@ export default {
             },
             ticks:{
               stepSize: 500,
+              max:3000,
               color: "rgba(238, 238, 238, 0.979)"
             }
           }],
@@ -88,17 +107,14 @@ export default {
       const startCreateDt = moment().subtract(8,'d').format('YYYYMMDD')
       const endCreateDt = moment().format('YYYYMMDD')
       const { data } = await axios.get('/openapi/service/rest/Covid19/getCovid19InfStateJson?serviceKey=SGsOrRFvsbOZ6Oa2wrwdLE9yTZeH%2FFNwx9nlqc2jYcC6d1cN7%2FLg4gpfcipuXnxVCVDSdrxgjw8kNv7pvEfNaw%3D%3D&pageNo=1&numOfRows=10&startCreateDt='+ startCreateDt +'&endCreateDt='+endCreateDt);
-
       data.response.body.items.item.forEach(d => {
         const stateDt = moment(d.stateDt, "YYYYMMDD").format("MM.DD");
-
         const {
             decideCnt,
         } = d;
         
         this.arrdecideCnt.push({stateDt, total: decideCnt});
    
-      
     });
    
   }
@@ -110,24 +126,32 @@ export default {
 
 <style>
 div{
-   /* text-align: lf; */
+   /* text-align: center; */
    margin: auto 0;
+   
 }
 .can{
+  
+  /* align-items: center; */
   text-align: left;
-  /* position: relative; */
+  /* position: absolute; */
+  
+  
+  
   
 }
 .canvas{
   margin:0 auto;
+  display: flex;
+  /* justify-content: space-between; */
   margin-top: 2%;
   background-color: white;
   text-align: left;
-  /* position: relative; */
+  position: relative;
   border-radius:10px;
   width: 700px;
-  height:250px;
-  border:  2px solid rgba(31, 19, 19, 0.089);
+  height:220%;
+  border:  2px solid rgba(43, 22, 22, 0.089);
   padding-top: 1%;
   padding-left: 2%;
   margin-bottom: 2%;

@@ -1,7 +1,7 @@
 <template>
 <div >
   <transition-group class="overview-wrapper" name="slide-up" appear>
-    <div v-for="(item,idx) in display" :key="idx+0" >
+     <div v-for="(item,idx) in display" :key="idx+0" >
     <div :class="{ [item.color]: true, 'ov-item': true }">
         <div class="ov-title">{{ item.title }}</div>
         <div class="number-title">{{item.total}}</div>
@@ -23,10 +23,11 @@ export default {
   data () {
     return {
       display:[],
-      totaldecideCnt:[],
-      totaldeathCnt:[],
-      totalclearCnt:[],
-      totalexamCnt:[]
+      totaldecideCnt:[], //누적 확진자
+      todaydecideCnt:[], //일일 확진자
+      totaldeathCnt:[],  //누적 사망자
+      totalclearCnt:[], //누적 격리해제
+      todayflowCnt:[],  //일일 해외유입
     };
   },
   
@@ -34,21 +35,26 @@ export default {
     
       const startCreateDt = moment().subtract(1,'d').format('YYYYMMDD')
       const endCreateDt = moment().format('YYYYMMDD')
-      const { data } = await axios.get('/openapi/service/rest/Covid19/getCovid19InfStateJson?serviceKey=SGsOrRFvsbOZ6Oa2wrwdLE9yTZeH%2FFNwx9nlqc2jYcC6d1cN7%2FLg4gpfcipuXnxVCVDSdrxgjw8kNv7pvEfNaw%3D%3D&pageNo=1&numOfRows=10&startCreateDt='+ startCreateDt +'&endCreateDt='+endCreateDt);
+      const { data } = await axios.get('/openapi/service/rest/Covid19/getCovid19SidoInfStateJson?serviceKey=SGsOrRFvsbOZ6Oa2wrwdLE9yTZeH%2FFNwx9nlqc2jYcC6d1cN7%2FLg4gpfcipuXnxVCVDSdrxgjw8kNv7pvEfNaw%3D%3D&pageNo=1&numOfRows=10&startCreateDt='+ startCreateDt +'&endCreateDt='+endCreateDt);
+        const newdata = data.response.body.items.item.filter(function(e){
+            return e.gubun=="부산"
+        })
+        console.log(newdata);
 
-      data.response.body.items.item.forEach(d => {
-        this.totaldecideCnt.push(d.decideCnt)
-        this.totaldeathCnt.push(d.deathCnt)
-        this.totalclearCnt.push(d.clearCnt)
-        this.totalexamCnt.push(d.examCnt)
-    });
+      newdata.forEach(d => {
+            this.todaydecideCnt.push(d.incDec)
+            this.totaldecideCnt.push(d.defCnt)
+            this.totaldeathCnt.push(d.deathCnt)
+            this.totalclearCnt.push(d.isolClearCnt)
+            this.todayflowCnt.push(d.overFlowCnt)
+          });
 
     const cases= {
       color: "red",
       background:"red",
       title:"확진자",
       total:this.totaldecideCnt[0],
-      today:this.totaldecideCnt[0]-this.totaldecideCnt[1],
+      today:this.todaydecideCnt[0],
     }
     const deaths={
       color: "purple",
@@ -62,16 +68,16 @@ export default {
       background:"red",
       title:"격리해제",
       total: this.totalclearCnt[0],
-      today: this.totalclearCnt[0]-this.totalclearCnt[1],
+      today: this.totalclearCnt[0]-this.totalclearCnt[1]
     }
-    const exam={
-      color: "orange",
-      background:"red",
-      title:"검사 중",
-      total: this.totalexamCnt[0],
-      today: this.totalexamCnt[0]-this.totalexamCnt[1],
-    }
-    this.display= [cases, deaths, clear, exam]
+    // const exam={
+    //   color: "orange",
+    //   background:"red",
+    //   title:"해외 유입",
+    //   total: this.totalexamCnt[0],
+    //   today: this.todayflowCnt
+    // }
+    this.display= [cases, deaths, clear]
    
   }
     

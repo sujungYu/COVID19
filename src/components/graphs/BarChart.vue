@@ -1,8 +1,8 @@
 <script>
-import { Line } from "vue-chartjs";
+import { Bar } from "vue-chartjs";
 
 export default {
-    extends: Line,
+    extends: Bar,
     props:{
         label:{
             type: String
@@ -18,13 +18,14 @@ export default {
         var daydecideCnt= []
         const dates = this.chartData.map(d=>d.stateDt).reverse();
         const totals = this.chartData.map(d=>d.total);
+
         dates.shift()
         
-
         for(var i=0; i<8; i++){
             daydecideCnt.push(totals[i]-totals[i+1])
         }
         const daystate = daydecideCnt.reverse()
+    
         
 
         this.renderChart({
@@ -33,8 +34,11 @@ export default {
                 {
                 label: this.label,
                 data: daystate,
-                fill: false,
-                borderColor: 'skyblue'
+                barThickness: 12,
+                
+                backgroundColor: 'rgba(75,137,220,0.9)',
+                hoverBackgroundColor: 'rgba(75,137,220)'
+
             }
             ]
         },

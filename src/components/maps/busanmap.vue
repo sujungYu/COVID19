@@ -1,6 +1,8 @@
 <template>
 <div class="p1"> 
   <div class="d3 ">
+    <BusanCnt></BusanCnt>
+    <BusanBtn></BusanBtn>
     </div>
 </div>
     
@@ -9,7 +11,13 @@
 <script>
 import * as d3 from 'd3';
 import * as topojson from 'topojson';
+import BusanCnt from '../decideCnts/busanCnt.vue'
+import BusanBtn from '../buttons/busanbutton.vue'
 export default { 
+  components: {
+    BusanCnt,
+    BusanBtn
+  },
     mounted() {
       this.draw();
       
@@ -35,7 +43,7 @@ export default {
         const heightScale = (bounds[1][1] - bounds[0][1]) / height;
         const scale = 1 / Math.max(widthScale, heightScale);
         const xoffset = width / 2 - scale * (bounds[1][0] + bounds[0][0]) / 2 + 10;
-        const yoffset = height / 4 - scale * (bounds[1][1] + bounds[0][1]) / 2 + 80;
+        const yoffset = height / 3- scale * (bounds[1][1] + bounds[0][1]) / 2 + 80;
         const offset = [xoffset, yoffset];
         projection.scale(scale).translate(offset); 
         svg.append('g')

@@ -1,7 +1,7 @@
 <template>
 <transition name="slide-up" appear>
   <div>
-<div class="cnt"><span class="koreacnt">전국</span>누적 확진자 수 {{totaldecideCnt[0]}} 명</div>
+<div class="cnt"><span class="koreacnt">부산</span>누적 확진자 수 {{totaldecideCnt[0]}} 명</div>
 </div>
 </transition>
 </template>
@@ -13,6 +13,7 @@ import moment from 'moment'
 
 
 export default {
+    
   
 
   data () {
@@ -24,14 +25,18 @@ export default {
   
   async created(){
     
-      const startCreateDt = moment().subtract(1,'d').format('YYYYMMDD')
+      const startCreateDt =  moment().format('YYYYMMDD')
       const endCreateDt = moment().format('YYYYMMDD')
-      const { data } = await axios.get('/openapi/service/rest/Covid19/getCovid19InfStateJson?serviceKey=SGsOrRFvsbOZ6Oa2wrwdLE9yTZeH%2FFNwx9nlqc2jYcC6d1cN7%2FLg4gpfcipuXnxVCVDSdrxgjw8kNv7pvEfNaw%3D%3D&pageNo=1&numOfRows=10&startCreateDt='+ startCreateDt +'&endCreateDt='+endCreateDt);
-      console.log(data);
+      const { data } = await axios.get('/openapi/service/rest/Covid19/getCovid19SidoInfStateJson?serviceKey=SGsOrRFvsbOZ6Oa2wrwdLE9yTZeH%2FFNwx9nlqc2jYcC6d1cN7%2FLg4gpfcipuXnxVCVDSdrxgjw8kNv7pvEfNaw%3D%3D&pageNo=1&numOfRows=10&startCreateDt='+ startCreateDt +'&endCreateDt='+endCreateDt);
+        const newdata = data.response.body.items.item.filter(function(e){
+            return e.gubun=="부산"
+        })
+        console.log(newdata);
 
-      data.response.body.items.item.forEach(d => {
-        this.totaldecideCnt.push(d.decideCnt)
-    });
+      newdata.forEach(d => {
+            this.totaldecideCnt.push(d.defCnt)
+
+          });
    
   }
     
