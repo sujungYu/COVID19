@@ -28,7 +28,7 @@ export default {
         console.log(koreaMap);
         const geojson = topojson.feature(koreaMap, koreaMap.objects.skorea_provinces_2018_geo); 
         // const center = d3.geoCentroid(geojson);
-        const width = 600;
+        const width = 500;
         const height =800;
         const svg = d3
           .select('.d3')
@@ -43,7 +43,7 @@ export default {
         const heightScale = (bounds[1][1] - bounds[0][1]) / height;
         const scale = 1 / Math.max(widthScale, heightScale);
         const xoffset = width / 2 - scale * (bounds[1][0] + bounds[0][0]) / 2 + 10;
-        const yoffset = height / 3- scale * (bounds[1][1] + bounds[0][1]) / 2 + 80;
+        const yoffset = height / 4- scale * (bounds[1][1] + bounds[0][1]) / 2 + 80;
         const offset = [xoffset, yoffset];
         projection.scale(scale).translate(offset); 
         svg.append('g')
@@ -72,7 +72,7 @@ body{
 .d3{
   background:white; 
   width: 618px; 
-  height: 750px;
+  height: 670px;
   border-radius:10px;
   margin: 0 auto; 
   border: 2px solid rgba(31, 19, 19, 0.151);

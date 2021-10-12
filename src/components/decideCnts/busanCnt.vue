@@ -1,7 +1,7 @@
 <template>
 <transition name="slide-up" appear>
   <div>
-<div class="cnt"><span class="koreacnt">부산</span>누적 확진자 수 {{totaldecideCnt[0]}} 명</div>
+<div class="cnt"><span class="koreacnt">부산 </span>백신 접종자 수 {{SecondTot[0]}} 명</div>
 </div>
 </transition>
 </template>
@@ -9,7 +9,7 @@
 
 <script>
 import axios from 'axios'
-import moment from 'moment'
+const convert = require('xml-js');
 
 
 export default {
@@ -18,28 +18,31 @@ export default {
 
   data () {
     return {
-      totaldecideCnt:[],
+      SecondTot:[],
     
     };
   },
   
   async created(){
     
-      const startCreateDt =  moment().format('YYYYMMDD')
-      const endCreateDt = moment().format('YYYYMMDD')
-      const { data } = await axios.get('/openapi/service/rest/Covid19/getCovid19SidoInfStateJson?serviceKey=SGsOrRFvsbOZ6Oa2wrwdLE9yTZeH%2FFNwx9nlqc2jYcC6d1cN7%2FLg4gpfcipuXnxVCVDSdrxgjw8kNv7pvEfNaw%3D%3D&pageNo=1&numOfRows=10&startCreateDt='+ startCreateDt +'&endCreateDt='+endCreateDt);
-        const newdata = data.response.body.items.item.filter(function(e){
-            return e.gubun=="부산"
+      const { data } = await axios.get('/irgd/cov19stats.do?list=sido');
+      console.log(data);
+      var json = convert.xml2json(data,{ compact: true } )
+      const js=JSON.parse(json)
+      console.log(js);
+      const newdata = js.response.body.items.item.filter(function(e){
+          return e.sidoNm._text=="부산광역시"
         })
         console.log(newdata);
 
-      newdata.forEach(d => {
-            this.totaldecideCnt.push(d.defCnt)
 
-          });
+      newdata.forEach(d => {
+          this.SecondTot.push(d.secondTot._text)
+    });
+
    
+        
   }
-    
 }
   
 

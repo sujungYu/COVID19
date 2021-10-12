@@ -29,6 +29,7 @@ div{
 h1{
   font-family:'Poppins';
   font-size: 75px;
+  font-weight: bold;
   border-radius: 10px;
   background-color: white;
   width: 700px;

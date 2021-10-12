@@ -53,6 +53,7 @@ export default {
           .selectAll('path').data(geojson.features)
           .enter().append('path')
           .attr('d', path)
+          .style("rgb(209, 60, 60)")
           // .attr('transform', d3.event.transform)
       },
 

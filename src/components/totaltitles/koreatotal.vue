@@ -1,7 +1,7 @@
 <template>
 <div >
   <transition-group class="overview-wrapper" name="slide-up" appear>
-    <div v-for="(item,idx) in display" :key="idx+0" >
+    <div v-for="item in display" :key="item" >
     <div :class="{ [item.color]: true, 'ov-item': true }">
         <div class="ov-title">{{ item.title }}</div>
         <div class="number-title">{{item.total}}</div>
@@ -35,14 +35,13 @@ export default {
       const startCreateDt = moment().subtract(1,'d').format('YYYYMMDD')
       const endCreateDt = moment().format('YYYYMMDD')
       const { data } = await axios.get('/openapi/service/rest/Covid19/getCovid19InfStateJson?serviceKey=SGsOrRFvsbOZ6Oa2wrwdLE9yTZeH%2FFNwx9nlqc2jYcC6d1cN7%2FLg4gpfcipuXnxVCVDSdrxgjw8kNv7pvEfNaw%3D%3D&pageNo=1&numOfRows=10&startCreateDt='+ startCreateDt +'&endCreateDt='+endCreateDt);
-
       data.response.body.items.item.forEach(d => {
         this.totaldecideCnt.push(d.decideCnt)
         this.totaldeathCnt.push(d.deathCnt)
         this.totalclearCnt.push(d.clearCnt)
         this.totalexamCnt.push(d.examCnt)
     });
-
+    
     const cases= {
       color: "red",
       background:"red",

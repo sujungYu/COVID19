@@ -36,6 +36,7 @@ export default {
       const startCreateDt = moment().subtract(1,'d').format('YYYYMMDD')
       const endCreateDt = moment().format('YYYYMMDD')
       const { data } = await axios.get('/openapi/service/rest/Covid19/getCovid19SidoInfStateJson?serviceKey=SGsOrRFvsbOZ6Oa2wrwdLE9yTZeH%2FFNwx9nlqc2jYcC6d1cN7%2FLg4gpfcipuXnxVCVDSdrxgjw8kNv7pvEfNaw%3D%3D&pageNo=1&numOfRows=10&startCreateDt='+ startCreateDt +'&endCreateDt='+endCreateDt);
+        console.log(data);
         const newdata = data.response.body.items.item.filter(function(e){
             return e.gubun=="부산"
         })

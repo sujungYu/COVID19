@@ -1,8 +1,16 @@
 <template>
 <div>
         <div>
-            <button class= "Jeju button">일일{{displayFirst.today[0]}}누적{{displayFirst.total[0]}}</button>
-            <!-- <button class= "Jeju button">{{displaySecond}}</button> -->
+            <button class= "first button">1차 신규접종
+                <span class=red>{{displayFirst.today[0]}}명</span>
+                <br><span class=redbig>{{displayFirst.percent}}%
+                    </span>
+                    </button>
+            <button class= "second button">2차 신규접종
+                <span class=red>{{displaySecond.today[0]}}명</span>
+                <br><span class=redbig>{{displaySecond.percent}}%
+                    </span>
+                    </button>
         </div>
 </div>
 </template>
@@ -52,11 +60,13 @@ export default {
     this.displayFirst = {
         today: this.firstCnt,
         total: this.firstTot,
+        percent: ((this.firstTot/3358763)*100).toFixed(2)
         
     };
     this.displaySecond={
         today: this.SecondCnt,
         total: this.SecondTot,
+        percent: ((this.SecondTot/3358763)*100).toFixed(2)
     }
     // this.displayFirst= [First
     // this.displaySecond= Second
@@ -78,7 +88,8 @@ div{
 }
 .button{
     font-family: 'Gothic A1', sans-serif;
-    font-size: 15px;
+    font-size: 17px;
+    font-weight: bold;
     /* display: block; */
     background: white;
     justify-content: center;
@@ -86,8 +97,10 @@ div{
     border-radius: 5px;
     box-shadow:1px 1px rgba(170, 170, 170, 0.541);
     position: absolute;
-    width: 45px;
+    width: 130px;
+    
     transition: background 0.25s ease-in;
+    padding: 2%;
 }
 .button:hover {
   background: rgba(59, 56, 56, 0.89);
@@ -104,11 +117,20 @@ div{
 
 .red{
     font-weight: bolder;
-    color: red;
+    color: rgba(255, 0, 0, 0.644);
 }
-.Jeju{
-    top: 580px;
-    left:230px;
+.first{
+    top: 330px;
+    left:260px;
+}
+.second{
+    top: 200px;
+    left:410px;
+}
+.redbig{
+    font-weight: bolder;
+    color: red;
+    font-size: 30px;
 }
 
 
